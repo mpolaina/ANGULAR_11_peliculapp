@@ -1,1 +1,55 @@
-<p>pelicula works!</p>
+
+<div class="row animate__animated animate__fadeIn" *ngIf="pelicula">
+
+  <div class="row mb-3 text-right">
+    <div class="col">
+      <button class="btn btn-outline-warning"
+                (click)="onRegresar()">
+        Volver
+      </button>
+    </div>
+  </div>
+
+  <div class="row animate__animated animate__fadeInDown animate__fast">
+
+      <div class="col-md-6">
+
+        <img [src]="pelicula.poster_path | poster"
+              [alt]="pelicula.title"
+              class="img-thumbnail">
+
+      </div>
+
+      <div class="col-md-6">
+
+        <h3>{{ pelicula.title }}</h3>
+
+          <div class="row">
+              <div class="col">
+                <ngb-rating [max]="10" [rate]="pelicula.vote_average"  [readonly]="false"></ngb-rating>
+              </div>
+
+              <div class="col text-white">
+                {{ pelicula.vote_average | number:'1.1-2'}}
+              </div>
+          </div>
+
+          <div class="row text-white mt-4">
+              <div class="col">
+                {{ pelicula.overview}}
+              </div>
+          </div>
+
+      </div>
+
+  </div>
+
+</div>
+
+<div class="row mt-5 animate__animated animate__fadeInUp animate__fast"
+      *ngIf="reparto.length > 0">
+    <div class="col">
+        <h3 class="mb-3">Reparto</h3>
+        <app-reparto-slide  [reparto]="reparto"></app-reparto-slide>
+    </div>
+</div>
